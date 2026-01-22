@@ -1,0 +1,20 @@
+<nav
+  class="sidebar"
+  [class.open]="isOpen"
+  (mouseenter)="openSidebar()"
+  (mouseleave)="closeSidebar()"
+>
+  <a
+    *ngFor="let item of menuItems"
+    [routerLink]="item.route"
+    routerLinkActive="active"
+    class="menu-item"
+  >
+  <img [src]="item.icon" alt="" class="img-iconos">
+    <!-- <i [class]="item.icon"></i> -->
+
+    <span class="label" *ngIf="isOpen">
+      {{ item.label }}
+    </span>
+  </a>
+</nav>

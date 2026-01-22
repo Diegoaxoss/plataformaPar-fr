@@ -1,0 +1,287 @@
+<div class="btns">
+  <button class="btn-forma" (click)="crearUsuario()" pTooltip="Crear Asistente" tooltipPosition="top">
+    <img src="/crear.png" alt="" class="img-btn">
+  </button>
+
+  <button class="btn-forma" (click)="estadisticas()" pTooltip="Estadisticas de Asistencia" tooltipPosition="top">
+    <img src="/estadisticas.png" alt="" class="img-btn">
+  </button>
+
+</div>
+
+<div class="card" *ngIf="mostarTabla">
+  <div class="card p-3">
+    <!-- Campo de búsqueda -->
+    <div class="flex justify-content-end mb-3">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input #searchBox pInputText type="text" placeholder="Buscar..." class="p-inputtext-sm"
+          (input)="dt.filterGlobal(searchBox.value, 'contains')" />
+      </span>
+    </div>
+
+    <!-- Tabla -->
+    <p-table class="table" #dt [value]="products" [globalFilterFields]="[
+        'nombres',
+        'apellidos',
+        'documento',
+        'asistencia',
+        'categoria',
+        'pago'
+      ]" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th></th>
+          <th>Nombres</th>
+          <th>Documento</th>
+          <th>Asistencia</th>
+          <th>Categoría</th>
+          <th>Pago</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ product.idasistentes }}</td>
+          <td>
+            <button class="btn-forma" pTooltip="Asistencia" tooltipPosition="top"
+              (click)="marcarAsistencia(product.documento)">
+              <img src="/asistencia.png" alt="" class="img-btnTabla">
+            </button>
+
+            <button class="btn-forma" pTooltip="Editar Asistente" tooltipPosition="top"
+              (click)="editarUsuario(product)">
+              <img src="/editar.png" alt="" class="img-btnTabla">
+            </button>
+
+            <button class="btn-forma" (click)="imprimir(product)" pTooltip="Imprimir" tooltipPosition="top">
+              <img src="/imprimir.png" alt="" class="img-btnTabla">
+            </button>
+          </td>
+
+          <td>{{ product.nombres }} {{ product.apellidos }}</td>
+          <td>{{ product.documento }}</td>
+          <td>{{ product.asistencia }}</td>
+          <td>{{ product.categoria }}</td>
+          <td>{{ product.pago }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-dialog header="Registrar Asistente" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+    <span class="p-text-secondary block mb-5">Ingrese la información del asistente.</span>
+
+    <div class="grid-container">
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Nombres</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.nombres" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Apellidos</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.apellidos" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Asistencia</label>
+        <p-dropdown [options]="estados" optionValue="estado" [(ngModel)]="infoRegistro.asistencia" optionLabel="estado"
+          placeholder="--Seleccionar--" />
+      </div>
+
+    </div>
+
+    <div class="grid-container">
+      <div class="drow-selec flex flex-column gap-2">
+        <label for="username">Tipo Documento</label>
+        <p-dropdown [options]="tipoDocumento" optionValue="tipo" [(ngModel)]="infoRegistro.tipo_documento"
+          optionLabel="tipo" placeholder="--Seleccionar--" class="drow-selec" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Número Documento</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.documento" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Especialidad</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.especialidad" />
+      </div>
+    </div>
+
+
+    <div class="grid-container">
+      <div class="flex flex-column gap-2">
+        <label for="username">Categoria</label>
+        <p-dropdown [options]="categorias" optionValue="nombre" [(ngModel)]="infoRegistro.categoria"
+          optionLabel="nombre" placeholder="--Seleccionar--" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Dirección</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.direccion" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Telefono</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.telefono" />
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <div class="flex flex-column gap-2">
+        <label for="username">Ciudad</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.ciudad" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Pais</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoRegistro.pais" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Pago</label>
+        <p-dropdown [options]="estados" optionValue="estado" [(ngModel)]="infoRegistro.pago" optionLabel="estado"
+          [panelStyle]="{ width: '100%' }" placeholder="--Seleccionar--" class="drow-selec" />
+      </div>
+    </div>
+
+    <!-- <div class="card flex justify-content-center"> -->
+    <div class="campo-texto">
+      <p-floatLabel>
+        <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="infoRegistro.notas">
+        </textarea>
+        <label for="float-input">Nota</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Imprimir" (click)="imprimir(infoRegistro)" />
+      <p-button label="Cancelar" severity="secondary" (onClick)="visible = false" />
+      <p-button label="Registrar" (onClick)="registrar()" />
+    </div>
+
+  </p-dialog>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-dialog header="Editar Asistente" [modal]="true" [(visible)]="visibleEdicion" [style]="{ width: '50rem' }">
+    <span class="p-text-secondary block mb-5">Edite la información del asistente.</span>
+
+    <div class="grid-container">
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Nombres</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.nombres" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Apellidos</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.apellidos" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Asistencia</label>
+        <p-dropdown [options]="estados" optionValue="estado" [(ngModel)]="infoEdicion.asistencia" optionLabel="estado"
+          placeholder="--Seleccionar--" />
+      </div>
+
+    </div>
+
+    <div class="grid-container">
+      <div class="drow-selec flex flex-column gap-2">
+        <label for="username">Tipo Documento</label>
+        <p-dropdown [options]="tipoDocumento" optionValue="tipo" [(ngModel)]="infoEdicion.tipo_documento"
+          optionLabel="tipo" placeholder="--Seleccionar--" class="drow-selec" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Número Documento</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.documento" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Especialidad</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.especialidad" />
+      </div>
+    </div>
+
+
+    <div class="grid-container">
+      <div class="flex flex-column gap-2">
+        <label for="username">Categoria</label>
+        <p-dropdown [options]="categorias" optionValue="nombre" [(ngModel)]="infoEdicion.categoria" optionLabel="nombre"
+          placeholder="--Seleccionar--" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Dirección</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.direccion" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Telefono</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.telefono" />
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <div class="flex flex-column gap-2">
+        <label for="username">Ciudad</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.ciudad" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Pais</label>
+        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="infoEdicion.pais" />
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <label for="username">Pago</label>
+        <p-dropdown [options]="estados" optionValue="estado" [(ngModel)]="infoEdicion.pago" optionLabel="estado"
+          [panelStyle]="{ width: '100%' }" placeholder="--Seleccionar--" class="drow-selec" />
+      </div>
+    </div>
+
+    <!-- <div class="card flex justify-content-center"> -->
+    <div class="campo-texto">
+      <p-floatLabel>
+        <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="infoEdicion.notas">
+        </textarea>
+        <label for="float-input">Nota</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Cancelar" severity="secondary" (onClick)="cancelar()" />
+      <p-button label="Guardar" (onClick)="actualizar()" />
+    </div>
+
+  </p-dialog>
+</div>
+
+<!-- <div id="areaImpresion" *ngIf="true">
+  <h1>{{impresionAsistente.nombres}}</h1>
+  <h3>{{impresionAsistente.apellidos}}</h3>
+  <h3>{{impresionAsistente.categoria}}</h3>
+  <h3>{{impresionAsistente.idasistentes}}</h3>
+</div> -->
+
+<!-- <div id="areaImpresion" #areaImpresion style="display:none">
+  <h3><strong>{{ impresionAsistente.nombres }}</strong></h3>
+  <h5 class="espaciado">{{ impresionAsistente.apellidos }}</h5>
+  <h5 class="espaciado"><strong>{{ impresionAsistente.categoria }}</strong></h5>
+  <svg #barcode></svg>
+</div> -->
+<div id="areaImpresion" #areaImpresion style="display:none">
+  <div class="impresion-contenedor">
+    <h3><strong>{{ impresionAsistente.nombres }}</strong></h3>
+    <h5>{{ impresionAsistente.apellidos }}</h5>
+    <h5><strong>{{ impresionAsistente.categoria }}</strong></h5>
+    <svg #barcode></svg>
+  </div>
+</div>

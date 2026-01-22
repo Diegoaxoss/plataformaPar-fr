@@ -1,0 +1,176 @@
+.container-login {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  background-color: #f1f0f0;
+
+}
+
+.div-login {
+
+  width: 30%;
+  background-color: #f8f8f8;
+  border-radius: 0px 30px 30px 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.178);
+
+  .logo {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.div-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.div-image {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-olvido {
+  display: flex;
+  justify-content: end;
+
+  .custom-link {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #00A3FF;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .custom-link:hover {
+    // color: #015b8f;
+    color: #0b5ef8;
+    text-decoration: underline;
+
+  }
+
+  ::ng-deep .p-button {
+    background-color: #fff;
+    color: #00A3FF;
+    border: none !important;
+  }
+
+  ::ng-deep .p-button:hover {
+    color: #0b5ef8;
+    text-decoration: underline;
+
+  }
+
+}
+
+.inp-pass {
+  margin-top: 15px;
+}
+
+.btn-ingresar {
+  display: flex;
+  justify-content: center;
+
+  ::ng-deep .p-button {
+    background-color: #00A3FF;
+    color: white;
+  }
+}
+
+::ng-deep .p-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.178);
+  width: 300px;
+  margin: 0px;
+}
+
+
+
+::ng-deep .p-button:hover {
+  background-color: #0b5ef8;
+  color: white;
+}
+
+.div-inputs {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+
+
+  ::ng-deep p-floatLabel {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.2rem;
+  }
+
+  .p-float-label {
+    width: 100%; // Esto fuerza al contenedor interno a expandirse
+    display: block;
+  }
+
+  input {
+    width: 100%; // Esto asegura que el input se expanda
+  }
+}
+
+
+::ng-deep .p-floatLabel {
+  width: 100%;
+}
+
+.version{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;   
+}
+
+@media (max-width: 768px) {
+  .container-login {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 20px;
+  }
+
+  .div-login {
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .div-card {
+    margin-top: 0;
+  }
+
+  .div-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .div-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .version {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  ::ng-deep .p-card {
+    width: 100%;
+    box-shadow: none;
+  }
+}

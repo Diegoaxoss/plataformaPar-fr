@@ -1,0 +1,152 @@
+.btns {
+    display: flex;
+    justify-content: end;
+    margin-top: 50px;
+    margin-right: 20px;
+
+    .btn-forma {
+        border: none;
+        background: transparent;
+        /* evita fondo gris */
+        cursor: pointer;
+        padding: 8px;
+        transition: transform 0.2s ease;
+    }
+
+    .btn-forma img {
+        width: 60px;
+        /* ajusta según lo que necesites */
+        height: auto;
+        /* mantiene la proporción */
+    }
+
+    .btn-forma:hover {
+        transform: scale(1.05);
+        /* efecto hover suave */
+    }
+
+    .img-btn {
+        width: 100px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    .img-btn:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.table {
+    width: 50%;
+    margin: 20px auto;
+
+}
+
+.btn-forma {
+    border: none;
+    background: transparent;
+    /* evita fondo gris */
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease;
+
+}
+
+.btn-forma img {
+    width: 60px;
+    /* ajusta según lo que necesites */
+    height: auto;
+    /* mantiene la proporción */
+}
+
+.btn-forma:hover {
+    transform: scale(1.05);
+    /* efecto hover suave */
+}
+
+.img-btnTabla {
+    width: 100px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.item {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.drow-selec {
+    width: 100% !important;
+}
+
+.drow-selec .p-dropdown {
+    width: 100% !important;
+}
+
+.campo-texto {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+#areaImpresion {
+    text-align: center;
+    margin: 10px;
+    margin-top: -10px;
+}
+
+svg {
+    margin-top: -10px;
+    height: 17.5px;
+}
+
+.espaciado {
+    padding-top: -10px;
+    margin-top: -10px;
+}
+
+@media (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+  @page {
+    margin: 15mm 10mm;
+  }
+
+  #areaImpresion {
+    display: block !important;
+    text-align: center;
+  }
+
+  .impresion-contenedor {
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+  }
+
+  h3, h5 {
+    margin: 3mm 0;
+  }
+}
+

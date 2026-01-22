@@ -3,3 +3,15 @@
 @import 'primeng/resources/primeng.min.css';
 @import 'primeicons/primeicons.css';
 @import 'primeflex/primeflex.css';
+
+/* styles.css */
+body, html {
+  margin: 0;
+  height: 100vh;
+  background-image: url('/fondo.png');
+  background-size: cover;         /* Hace que cubra toda la pantalla */
+  background-position: center;    /* Centra la imagen */
+  background-attachment: fixed;   /* Hace que quede fija al hacer scroll */
+  background-repeat: no-repeat;   /* Evita que se repita */
+  font-family: 'Arial', sans-serif;
+}

@@ -1,0 +1,45 @@
+<div class="container-login">
+
+    <div class="div-login">
+        <div class="logo">
+            <!-- <img src="/logo_prin.png" alt="" width="300px" height="200px"> -->
+        </div>
+        <div class="div-card">
+            <p-card header="Inicio de Sesión" class="p-cardiv">
+                <div class="div-inputs">
+                    <p-floatLabel class="campo">
+                        <input id="username" type="text" pInputText autocomplete="off"
+                            [(ngModel)]="infoSesion.username"  />
+                        <label for="username">Usuario</label>
+                    </p-floatLabel>
+
+                    <p-floatLabel class="inp-pass ">
+                        <input id="username" type="password" pInputText autocomplete="off"
+                            [(ngModel)]="infoSesion.password" />
+                        <label for="username">Contraseña</label>
+                    </p-floatLabel>
+
+
+                </div>
+
+
+                <div class="btn-ingresar">
+                    <p-button (click)="ingresar()">Ingresar</p-button>
+                </div>
+
+            </p-card>
+        </div>
+        <div>
+            <div class="version">
+                <p>V 1.0.0.0</p>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="div-image">
+        <img src="banners.jpeg" alt="" width="95%" height="85%">
+    </div>
+</div>

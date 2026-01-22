@@ -1,0 +1,16 @@
+.layout {
+  display: flex;
+}
+
+.content {
+  margin-left: 70px; /* ancho sidebar cerrado */
+  width: calc(100% - 70px);
+  padding: 20px;
+  transition: margin-left 0.25s ease, width 0.25s ease;
+}
+
+/* Cuando el sidebar está abierto */
+.sidebar.open ~ .content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+}

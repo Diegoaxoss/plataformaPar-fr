@@ -17,4 +17,8 @@ export class QuorumService {
   getTiempoRespuesta() {
     return this.http.get(`${this.API_URI}/quorum/tiempo-respuesta`);
   }
+
+  postCreateQuorum(infoQuorum: any){
+    return this.http.post(`${this.API_URI}/quorum/crear-quorum`, infoQuorum);
+  }
 }

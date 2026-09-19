@@ -1,45 +1,49 @@
 <div class="card">
-    <div class="card-header">
-        <div>
-            <h3>Configuración</h3>
-        </div>
-
-        <div>
-            <label for="plataforma">Plataforma de Reunión</label>
-            <input pInputText id="plataforma" aria-describedby="username-help" />
-        </div>
-    </div>
-
-    <div class="card-body">
-        <div class="seleccionables">
-            <div class="drow-selec flex flex-column gap-2">
-                <label for="username">Tipo de Quorum</label>
-                <p-dropdown [options]="tipoQuorum" optionValue="tipo_quorum" [(ngModel)]="infoVotacion.quorum"
-                    optionLabel="tipo_quorum" placeholder="--Seleccionar--" class="drow-selec" />
+    <form [formGroup]="form">
+        <div class="card-header">
+            <div>
+                <h3>Configuración</h3>
             </div>
-
-            <div class="drow-selec flex flex-column gap-2">
-                <label for="username">Tiempo de Respuesta Segundos</label>
-                <p-dropdown [options]="tiempoRespuesta" optionValue="tiempo_respuesta"
-                    [(ngModel)]="infoVotacion.tiempoRespuesta" optionLabel="tiempo_respuesta"
-                    placeholder="--Seleccionar--" class="drow-selec" />
-            </div>
-
 
             <div>
-                <p-checkbox [(ngModel)]="infoVotacion.resultadoPantalla" label="Resultado en Pantalla" value="result" />
+                <label for="plataforma">Plataforma de Reunión</label>
+                <input pInputText id="plataforma" aria-describedby="username-help" formControlName="plataforma_reunion"/>
             </div>
-<!-- 
+        </div>
+
+        <div class="card-body">
+
+
+
+
+            <div class="seleccionables">
+                <div class="drow-selec flex flex-column gap-2">
+                    <label for="username">Tipo de Quorum</label>
+                    <p-dropdown [options]="tipoQuorum" optionValue="tipo_quorum" formControlName="tipo_quorum"
+                        optionLabel="tipo_quorum" placeholder="--Seleccionar--" class="drow-selec" />
+                </div>
+
+                <div class="drow-selec flex flex-column gap-2">
+                    <label for="username">Tiempo de Respuesta Segundos</label>
+                    <p-dropdown [options]="tiempoRespuesta" optionValue="tiempo_respuesta"
+                        formControlName="tiempo_respuesta" optionLabel="tiempo_respuesta"
+                        placeholder="--Seleccionar--" class="drow-selec" />
+                </div>
+
+
+                <div>
+                    <p-checkbox formControlName="resultado_pantalla" label="Resultado en Pantalla"
+                        value="result" />
+                </div>
+                <!-- 
             <div>
                 <p-checkbox [(ngModel)]="infoVotacion.resultadoPantalla" label="Resultado en Pantalla" [binary]="true" variant="filled" />
             </div> -->
 
 
-        </div>
+            </div>
 
-        <div class="divider"></div>
-
-        <form [formGroup]="form">
+            <div class="divider"></div>
 
             <div formArrayName="preguntas">
 
@@ -48,7 +52,7 @@
                     <!-- Pregunta -->
                     <div class="flex flex-column gap-2">
                         <label>Pregunta {{ i + 1 }}</label>
-                        <input pInputText formControlName="texto" />
+                        <input pInputText formControlName="pregunta" />
                     </div>
 
                     <!-- Respuestas -->
@@ -67,26 +71,32 @@
 
                     <hr class="my-3">
 
-                    <div style="height: 30px; position: relative;" class="speeddial-linear-demo">
+                    <!-- <div style="height: 30px; position: relative;" class="speeddial-linear-demo">
                         <p-toast />
                         <p-speedDial [model]="items" direction="left" />
-                    </div>
+                    </div> -->
 
                 </div>
 
             </div>
 
-            <!-- Botón agregar pregunta -->
-            <button pButton type="button" icon="pi pi-plus" label="Agregar pregunta" class="mt-3"
-                (click)="agregarPregunta()"></button>
+            <div class="flex gap-3 mt-3 ml-3 mb-3">
+                <!-- Botón agregar pregunta -->
+                <button pButton type="button" icon="pi pi-plus" label="Agregar pregunta" class="mt-3"
+                    (click)="agregarPregunta()"></button>
 
-            <!-- Guardar -->
-            <button pButton type="button" label="Guardar" class="mt-3 p-button-success" (click)="guardar()"></button>
+                <!-- Guardar -->
+                <button pButton type="button" label="Guardar" class="mt-3 p-button-success"
+                    (click)="guardar()"></button>
 
-        </form>
+            </div>
 
 
 
-        <div class="divider"></div>
-    </div>
+
+
+            <!-- <div class="divider"></div> -->
+        </div>
+
+    </form>
 </div>

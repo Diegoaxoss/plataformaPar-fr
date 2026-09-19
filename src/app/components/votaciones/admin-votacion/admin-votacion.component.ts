@@ -16,19 +16,18 @@ export class AdminVotacionComponent implements OnInit {
   tipoQuorum: any;
   tiempoRespuesta: any;
 
-  infoVotacion = {
-    quorum: '',
-    tiempoRespuesta: '',
-    resultadoPantalla: false
-  };
-
   form: FormGroup;
 
   items: MenuItem[] = [];
   constructor(private quorumService: QuorumService, private fb: FormBuilder, private messageService: MessageService) {
     this.form = this.fb.group({
+      plataforma_reunion: ['', Validators.required],
+      tipo_quorum: ['', Validators.required],
+      tiempo_respuesta: [60, Validators.required],
+      resultado_pantalla: [false],
       preguntas: this.fb.array([])
     });
+
 
     // Agregamos la primera pregunta por defecto
     this.agregarPregunta();
@@ -86,7 +85,7 @@ export class AdminVotacionComponent implements OnInit {
   // Crear pregunta
   crearPregunta(): FormGroup {
     return this.fb.group({
-      texto: ['', Validators.required],
+      pregunta: ['', Validators.required],
       respuestas: this.fb.array([
         this.fb.control('', Validators.required),
         this.fb.control('', Validators.required)
@@ -113,5 +112,9 @@ export class AdminVotacionComponent implements OnInit {
 
   guardar() {
     console.log(this.form.value);
+
+    this.quorumService.postCreateQuorum(this.form.value).subscribe(response => {
+      console.log('Quorum guardado exitosamente', response);
+    });
   }
 }
